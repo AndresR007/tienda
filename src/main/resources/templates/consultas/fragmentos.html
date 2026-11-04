@@ -67,7 +67,8 @@
             <div th:replace="~{consultas/fragmentos :: formConsulta('primary',#{consultas.derivadas},'/consultas/consultaDerivada')}"/>
             <div th:replace="~{consultas/fragmentos :: formConsulta('warning',#{consultas.jpql},'/consultas/consultaJPQL')}"/>
             <div th:replace="~{consultas/fragmentos :: formConsulta('success',#{consultas.sql},'/consultas/consultaSQL')}"/>
-            <div class='card'><p>Acá va su Práctica #2</p></div>
+            <!-- Se agrego esta parte para la consulta con su respectivo llamado -->
+            <div th:replace="~{consultas/fragmentos :: formUnidades('danger',#{consultas.unidades},'/consultas/consultaSQLP')}"/>
         </section>
 
         <div th:fragment='formConsulta(colorForm, textoForm, urlForm)'>
@@ -81,7 +82,7 @@
                             <label>[[#{consultas.precio.inferior}]]</label>
                             <input type="number" name='precioInf' th:value='${precioInf}'
                                    class='form-control' min="0" required/>
-                        </div>
+                        </div> 
                         <div class='mb-3'>
                             <label>[[#{consultas.precio.superior}]]</label>
                             <input type="number" name='precioSup' th:value='${precioSup}'
@@ -96,5 +97,34 @@
                 </div>
             </form>
         </div>
+
+       <!-- Consulta de unidades por medio de unidades  -->
+        <div th:fragment='formUnidades(colorForm, textoForm, urlForm)'>
+            <form method="post" th:action='@{${urlForm}}' class='was-validated'>
+                <div class='card p-2'>
+                    <div class="card-header text-center text-white" th:classappend="${'bg-'+colorForm}">
+                        <h5>[[${textoForm}]]</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class='mb-3'>
+                            <label>[[#{consultas.unidades.inferior}]]</label>
+                            <input type="number" name='unidadesInf' th:value='${unidadesInf}'
+                                   class='form-control' min="0" required/>
+                        </div>
+                        <div class='mb-3'>
+                            <label>[[#{consultas.unidades.superior}]]</label>
+                            <input type="number" name='unidadesSup' th:value='${unidadesSup}'
+                                   class='form-control' min="0" required/>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type='submit' class='btn text-white' th:classappend="${'btn-'+colorForm}">
+                            <i class='fa-solid fa-magnifying-glass'></i> [[${textoForm}]]
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </body>
 </html>

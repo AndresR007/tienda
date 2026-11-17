@@ -50,7 +50,7 @@
                             </div>
                             <form th:action="@{/carrito/agregar}" th:method="POST" class="d-inline">
                                 <input type="hidden" th:value="${p.idProducto}" name="idProducto"/>
-                                <button type="submit" 
+                                <button type="button" 
                                         class="btn btn-sm btn-primary" 
                                         th:disabled="${p.existencias == 0}"
                                         onclick="addCart(this.form)">
@@ -98,7 +98,7 @@
             </form>
         </div>
 
-       <!-- Consulta de unidades por medio de unidades  -->
+        <!-- Consulta de unidades por medio de unidades  -->
         <div th:fragment='formUnidades(colorForm, textoForm, urlForm)'>
             <form method="post" th:action='@{${urlForm}}' class='was-validated'>
                 <div class='card p-2'>
